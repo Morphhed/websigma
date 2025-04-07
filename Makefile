@@ -1,4 +1,4 @@
-.PHONY: postgres createdb dropdb migratedown sqlc test server mock migrateupuser migratedownuser
+.PHONY: postgres createdb dropdb migratedown sqlc test server mock migrateupuser migratedownuser migrateup
 
 postgres:
 	docker run --name sigmasigma -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres
@@ -15,6 +15,9 @@ migratedown:
 
 migratedownuser:
 	migrate -path ./db/migration -database "postgresql://root:secret@localhost:5432/sigma?sslmode=disable" -verbose down 1
+
+migrateup:
+	migrate -path ./db/migration -database "postgresql://root:secret@localhost:5432/sigma?sslmode=disable" -verbose up
 
 migrateupuser:
 	migrate -path ./db/migration -database "postgresql://root:secret@localhost:5432/sigma?sslmode=disable" -verbose up 1
