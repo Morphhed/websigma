@@ -19,7 +19,7 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_USER=root
+          POSTGRES_USER: root
           POSTGRES_PASSWORD: secret
           POSTGRES_DB: sigma
         options: >-
